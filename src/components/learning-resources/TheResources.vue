@@ -15,7 +15,9 @@
           {{ key }}
         </button>
       </BaseCard>
-      <component :is="tabs[selectedTab]"></component>
+      <keep-alive>
+        <component :is="tabs[selectedTab]"></component>
+      </keep-alive>
     </div>
   </div>
 </template>
