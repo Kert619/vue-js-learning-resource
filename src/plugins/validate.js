@@ -6,12 +6,7 @@ import {
   configure,
 } from "vee-validate";
 
-import { required, alpha_spaces } from "@vee-validate/rules";
-
-const getFieldName = (fieldName) => {
-  const displayName = fieldName.replace(/_/g, " ");
-  return displayName;
-};
+import { required, alpha_spaces, url } from "@vee-validate/rules";
 
 export default {
   install(app) {
@@ -21,17 +16,19 @@ export default {
 
     defineRule("required", required);
     defineRule("alphaSpaces", alpha_spaces);
+    defineRule("url", url);
 
     configure({
       generateMessage: (ctx) => {
         const messages = {
-          required: `The field ${ctx.field} is required`,
-          alphaSpaces: `The field ${ctx.field} can only contain alphabetic characters or spaces. `,
+          required: `The ${ctx.field} is required`,
+          alphaSpaces: `The ${ctx.field} can only contain alphabetic characters or spaces. `,
+          url: `The ${ctx.field} must be a url`,
         };
 
         const message = messages[ctx.rule.name]
           ? messages[ctx.rule.name]
-          : `The field ${ctx.field} is invalid`;
+          : `The ${ctx.field} is invalid`;
 
         return message;
       },
