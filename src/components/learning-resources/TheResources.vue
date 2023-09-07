@@ -2,18 +2,18 @@
   <div class="p-3">
     <div class="max-w-4xl mx-auto">
       <BaseCard class="mb-3">
-        <button
-          class="btn btn-sm rounded-none"
+        <div
+          class="inline-block cursor-pointer p-3 border-b-2"
           :class="{
-            'btn-primary': selectedTab === key,
-            'btn-ghost': selectedTab !== key,
+            'border-rose-500': selectedTab === key,
+            'border-gray-300': selectedTab !== key,
           }"
           v-for="(_, key) in tabs"
           :key="key"
           @click="setSelectedTab(key)"
         >
           {{ key }}
-        </button>
+        </div>
       </BaseCard>
       <keep-alive>
         <component :is="tabs[selectedTab]"></component>
